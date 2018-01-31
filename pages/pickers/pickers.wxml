@@ -1,0 +1,72 @@
+<!-- 信息容器 -->
+<view class='infos-container'>
+  <view class='info-container' bindtap='toInput' data-type="pregnant">
+    <view class='label-container'>
+      <image class='label-img' src='/img/label2.png'></image>
+      <text class='label-text'>孕期</text>
+    </view>
+    <view class='value-container'>
+      <text class='value'>{{'第'+dWeeks+'周'}}</text>
+      <image class='input' src='/img/toLeft.png'></image>
+    </view>
+  </view>
+  <view class='info-container' bindtap='toInput' data-type="birthday">
+    <view class='label-container'>
+      <image class='label-img birthday' src='/img/label3.png'></image>
+      <text class='label-text'>生日</text>
+    </view>
+    <view class='value-container'>
+      <text class='value'>{{birYear+'-'+birMonth+'-'+birDay}}</text>
+      <image class='input' src='/img/toLeft.png'></image>
+    </view>
+  </view>
+  <view class='info-container' bindtap='toInput' data-type="stature">
+    <view class='label-container'>
+      <image class='label-img' src='/img/label4.png'></image>
+      <text class='label-text'>身高</text>
+    </view>
+    <view class='value-container'>
+      <text class='value'>{{statureVal+'cm'}}</text>
+      <image class='input' src='/img/toLeft.png'></image>
+    </view>
+  </view>
+  <view class='info-container no-border' bindtap='toInput' data-type="weight">
+    <view class='label-container'>
+      <image class='label-img' src='/img/label5.png'></image>
+      <text class='label-text'>体重</text>
+    </view>
+    <view class='value-container'>
+      <text class='value'>{{weightVal+'kg'}}</text>
+      <image class='input' src='/img/toLeft.png'></image>
+    </view>
+  </view>
+</view>
+
+<!-- 弹出picker -->
+<view wx:if='{{inputting}}' class='input-background'>
+  <view class='input-container'>
+    <text class='input-title'>{{inputTitle}}</text>
+    <view class='input-btn-container'>
+      <text class='input-btn input-btn-cancel' catchtap='cancel'>取消</text>
+      <text class='input-btn input-btn-confirm' catchtap='confirm'>确定</text>
+    </view>
+    <picker-view class='picker-container' indicator-class='selected' value='{{value}}' bindchange='bindChange'>
+      <text wx:if='{{stature || weight}}' class="{{birthday || pregnant?'pickers-unit':'picker-unit'}}"></text>
+      <picker-view-column>
+        <view class='picker-content' wx:for='{{inputAs}}'>{{item}}
+          <text style='color:#826fca;font-size: 12px;'>{{(stature||weight)?(stature?' cm':' kg'):''}}</text>
+        </view>
+      </picker-view-column>
+      <text wx:if='{{stature || weight}}' class="{{birthday || pregnant?'pickers-unit':'picker-unit'}}"></text>
+      <text wx:if='{{birthday || pregnant}}' class='pickers-unit'>年</text>
+      <picker-view-column wx:if='{{birthday || pregnant}}'>
+        <view class='picker-content' wx:for='{{inputBs}}'>{{item}}</view>
+      </picker-view-column>
+      <text wx:if='{{birthday || pregnant}}' class='pickers-unit'>月</text>
+      <picker-view-column wx:if='{{birthday || pregnant}}'>
+        <view class='picker-content' wx:for='{{inputCs}}'>{{item}}</view>
+      </picker-view-column>
+      <text wx:if='{{birthday || pregnant}}' class='pickers-unit'>日</text>
+    </picker-view>
+  </view>
+</view>

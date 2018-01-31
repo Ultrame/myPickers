@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/pickers/pickers"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Ultrame",
+    "navigationBarTextStyle": "black"
+  }
+}
